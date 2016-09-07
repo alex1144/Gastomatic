@@ -78,13 +78,25 @@ namespace GastoMatic.Models
         private bool deleteDatabaseUser(string userId)
         {
             ActiveRecord record = new ActiveRecord();
-            record.ExecuteQuery("DELETE * FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
-            if (record.rows.count > 0)
-                return record.rows;
-            else
-                return null;
-        }
+            string datosConexion = this.cadenaConexion;
 
+            try
+            {
+                using (SqlConnection con = new SqlConnection(datosConexion))
+                {
+                    //Paso 2 - Abrir la conexión
+                    con.Open();
+                    record.ExecuteQuery("DELETE * FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
+                    if (record.rows.count > 0)
+                        return record.rows;
+                    else
+                        return null;
+                }
+            }
+            catch (Exception e)
+            {
+            }
+        }
      
 
 
