@@ -86,15 +86,21 @@ namespace GastoMatic.Models
                 {
                     //Paso 2 - Abrir la conexión
                     con.Open();
-                    record.ExecuteQuery("DELETE * FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
-                    if (record.rows.count > 0)
-                        return record.rows;
+
+                    string textoCmd = "DELETE * FROM CuentaGastosUsuarios WHERE Usuario = '" + userId+"'";
+                    SqlCommand cmd = new SqlCommand(textoCmd, con);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.RecordsAffected>0)
+                        return true;
                     else
-                        return null;
+                        return false;
                 }
             }
             catch (Exception e)
             {
+                return false;
             }
         }
      
