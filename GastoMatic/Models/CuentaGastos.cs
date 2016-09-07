@@ -13,5 +13,11 @@ namespace GastoMatic.Models
         public DateTime FechaFinal { get; set; }
         public string NumeroAcreedor { get; set; }
         public string Descripcion { get; set; }
+
+        public bool crearCuentaGasto() {
+            bool resultado = false;
+
+            return resultado;
+        }
     }
 }
