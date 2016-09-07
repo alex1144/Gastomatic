@@ -37,10 +37,10 @@ namespace GastoMatic.Models
 
         }
 
-        private string getDatabaseUser(int userId)
+        private string getDatabaseUser(string userId)
         {
             ActiveRecord record = new ActiveRecord();
-            record.ExecuteQuery("SELECT usuario FROM CuentaGastosUsuarios WHERE userid = @UserId");
+            record.ExecuteQuery("SELECT usuario FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
             if (record.rows.count > 0 )
                 return record.rows;
             else
@@ -50,7 +50,7 @@ namespace GastoMatic.Models
         private string getDatabasePassword(int userId)
         {
             ActiveRecord record = new ActiveRecord();
-            return record.ExecuteQuery("SELECT password FROM CuentaGastosUsuarios WHERE userid = @UserId");
+            return record.ExecuteQuery("SELECT password FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
         }
 
      
@@ -59,8 +59,8 @@ namespace GastoMatic.Models
         public bool createUser(string userId, string password, string email, string nombre, string apellidopaterno, string apellidomaterno, string numAcreedor, string perfil)
         {
             this.Usuario = userId;
-            bool validateUserExists = validateUser();
-            if (validateUserExists)
+            string validateUserExists = getDatabaseUser(userId);
+            if (validateUserExists!=null)
             {
 
                 return false;
@@ -69,6 +69,9 @@ namespace GastoMatic.Models
             {
                 ActiveRecord record = new ActiveRecord();
                 string insertUser = "INSERT INTO CuentaGastosUsuarios (Usuario, Contrasena, Nombre,ApellidoPaterno,ApellidoMaterno,NumeroAcreedor,email,Perfil) VALUES (";
+               record.ExecuteQuery(insertUser);
+
+               return true;
             }
         }
     }
