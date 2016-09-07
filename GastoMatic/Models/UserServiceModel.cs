@@ -5,7 +5,7 @@ using System.Web;
 
 namespace GastoMatic.Models
 {
-    public class UserServiceModel
+    public class UserServiceModel : ActiveRecord
     {
         public string Usuario { get; set; }
         public string Contrasena { get; set; }
