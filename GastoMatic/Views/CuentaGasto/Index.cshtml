@@ -1,0 +1,64 @@
+﻿@model IEnumerable<GastoMatic.Models.CuentaGastos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            IdCuentaGastos
+        </th>
+        <th>
+            FechaCreacion
+        </th>
+        <th>
+            FechaInicial
+        </th>
+        <th>
+            FechaFinal
+        </th>
+        <th>
+            NumeroAcreedor
+        </th>
+        <th>
+            Descripcion
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+        <td>
+            @item.IdCuentaGastos
+        </td>
+        <td>
+            @String.Format("{0:g}", item.FechaCreacion)
+        </td>
+        <td>
+            @String.Format("{0:g}", item.FechaInicial)
+        </td>
+        <td>
+            @String.Format("{0:g}", item.FechaFinal)
+        </td>
+        <td>
+            @item.NumeroAcreedor
+        </td>
+        <td>
+            @item.Descripcion
+        </td>
+    </tr>
+}
+
+</table>
+
