@@ -56,10 +56,10 @@ namespace GastoMatic.Models
                 return null;
         }
 
-        private string getDatabasePassword(string userId)
+        private bool deleteDatabaseUser(string userId)
         {
             ActiveRecord record = new ActiveRecord();
-            record.ExecuteQuery("SELECT password FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
+            record.ExecuteQuery("DELETE * FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
             if (record.rows.count > 0)
                 return record.rows;
             else
