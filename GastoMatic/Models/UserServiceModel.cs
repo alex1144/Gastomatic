@@ -46,12 +46,25 @@ namespace GastoMatic.Models
 
         }
 
-        private string getDatabaseUser(string userId)
+        private UserServiceModel getDatabaseUser(string userId)
         {
+            UserServiceModel usuario = null;
             ActiveRecord record = new ActiveRecord();
-            record.ExecuteQuery("SELECT usuario FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
+            record.ExecuteQuery("SELECT * FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
             if (record.rows.count > 0)
-                return record.rows;
+            {
+                usuario = new UserServiceModel{
+                    Usuario = rows.usuario,
+                    Contrasena = rows.password,
+                    Correo = rows.email,
+                    Nombre = rows.nombre,
+                    ApellidoPaterno = rows.Apellido,
+                    ApellidoMaterno = rows.ApeMat,
+                    CodigoAcreditacion = rows.codigo,
+                    Perfil = rows.perfil
+                };
+            }
+            return usuario;
             else
                 return null;
         }
