@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.SqlClient;
 
 namespace GastoMatic.Models
 {
@@ -71,12 +72,23 @@ namespace GastoMatic.Models
 
         private bool deleteDatabaseUser(string userId)
         {
-            ActiveRecord record = new ActiveRecord();
-            record.ExecuteQuery("DELETE * FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
-            if (record.rows.count > 0)
-                return record.rows;
-            else
-                return null;
+            
+            try
+            {
+                string datosConexion = this.cadenaConexion;
+                using (SqlConnection con = new SqlConnection(datosConexion))
+                {
+                    ActiveRecord record = new ActiveRecord();
+                    record.ExecuteQuery("DELETE * FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
+                    if (record.rows.count > 0)
+                        return record.rows;
+                    else
+                        return null;
+                }
+            }
+            catch(Exception e){
+
+            }
         }
 
      
