@@ -1,0 +1,5 @@
+c:\users\bzavala\documents\visual studio 2010\Projects\GastoMatic\GastoMatic\bin\GastoMatic.dll
+c:\users\bzavala\documents\visual studio 2010\Projects\GastoMatic\GastoMatic\bin\GastoMatic.pdb
+c:\users\bzavala\documents\visual studio 2010\Projects\GastoMatic\GastoMatic\obj\Debug\GastoMatic.csprojResolveAssemblyReference.cache
+c:\users\bzavala\documents\visual studio 2010\Projects\GastoMatic\GastoMatic\obj\Debug\GastoMatic.dll
+c:\users\bzavala\documents\visual studio 2010\Projects\GastoMatic\GastoMatic\obj\Debug\GastoMatic.pdb
