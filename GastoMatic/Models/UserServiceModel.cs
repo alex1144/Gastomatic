@@ -18,5 +18,43 @@ namespace GastoMatic.Models
         {
 
         }
+
+        public bool validateUserLogin()
+        {
+            try{
+                if (getDatabaseUser() == this.Usuario)
+                    if (getDatabasePassword() == this.Contrasena)
+                        return true;
+                    else
+                        throw new Exception("La contraseña es incorrecta");
+                else
+                    throw new Exception("No existe el usuario ");
+            } 
+            catch
+            {
+                return false;
+            }
+
+        }
+
+        private string getDatabaseUser(int userId)
+        {
+            ActiveRecord record = new ActiveRecord();
+            record.ExecuteQuery("SELECT usuario FROM CuentaGastosUsuarios WHERE userid = @UserId");
+            if (record.rows.count > 0 )
+                return record.rows;
+            else
+                return null
+        }
+
+        private string getDatabasePassword(int userId)
+        {
+            ActiveRecord record = new ActiveRecord();
+            return record.ExecuteQuery("SELECT password FROM CuentaGastosUsuarios WHERE userid = @UserId");
+        }
+
+     
+
+        
     }
 }
