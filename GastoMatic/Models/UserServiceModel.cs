@@ -51,19 +51,24 @@ namespace GastoMatic.Models
         {
             UserServiceModel usuario = null;
             ActiveRecord record = new ActiveRecord();
-            record.ExecuteQuery("SELECT * FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
-            if (record.rows.count > 0)
+            using (SqlConnection con = new SqlConnection(this.cadenaConexion))
             {
-                usuario = new UserServiceModel{
-                    Usuario = rows.usuario,
-                    Contrasena = rows.password,
-                    Correo = rows.email,
-                    Nombre = rows.nombre,
-                    ApellidoPaterno = rows.Apellido,
-                    ApellidoMaterno = rows.ApeMat,
-                    CodigoAcreditacion = rows.codigo,
-                    Perfil = rows.perfil
-                };
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM CuentaGastosUsuarios WHERE Usuario = @UserId", con);
+                SqlDataReader reader = cmd.ExecuteReader()
+                if (reader.HasRows)
+                {
+                    usuario = new UserServiceModel{
+                        Usuario = reader.Getvalue("usuario"),
+                        Contrasena = rows.password,
+                        Correo = rows.email,
+                        Nombre = rows.nombre,
+                        ApellidoPaterno = rows.Apellido,
+                        ApellidoMaterno = rows.ApeMat,
+                        CodigoAcreditacion = rows.codigo,
+                        Perfil = rows.perfil
+                    };
+                }
             }
             return usuario;
             else
@@ -72,23 +77,12 @@ namespace GastoMatic.Models
 
         private bool deleteDatabaseUser(string userId)
         {
-            
-            try
-            {
-                string datosConexion = this.cadenaConexion;
-                using (SqlConnection con = new SqlConnection(datosConexion))
-                {
-                    ActiveRecord record = new ActiveRecord();
-                    record.ExecuteQuery("DELETE * FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
-                    if (record.rows.count > 0)
-                        return record.rows;
-                    else
-                        return null;
-                }
-            }
-            catch(Exception e){
-
-            }
+            ActiveRecord record = new ActiveRecord();
+            record.ExecuteQuery("DELETE * FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
+            if (record.rows.count > 0)
+                return record.rows;
+            else
+                return null;
         }
 
      
