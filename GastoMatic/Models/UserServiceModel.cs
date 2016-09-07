@@ -55,6 +55,21 @@ namespace GastoMatic.Models
 
      
 
-        
+
+        public bool createUser(string userId, string password, string email, string nombre, string apellidopaterno, string apellidomaterno, string numAcreedor, string perfil)
+        {
+            this.Usuario = userId;
+            bool validateUserExists = validateUser();
+            if (validateUserExists)
+            {
+
+                return false;
+            }
+            else
+            {
+                ActiveRecord record = new ActiveRecord();
+                string insertUser = "INSERT INTO CuentaGastosUsuarios (Usuario, Contrasena, Nombre,ApellidoPaterno,ApellidoMaterno,NumeroAcreedor,email,Perfil) VALUES (";
+            }
+        }
     }
 }
