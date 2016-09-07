@@ -47,7 +47,7 @@ namespace GastoMatic.Models
                 return null
         }
 
-        private string getDatabasePassword(int userId)
+        private string getDatabasePassword(string userId)
         {
             ActiveRecord record = new ActiveRecord();
             return record.ExecuteQuery("SELECT password FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
