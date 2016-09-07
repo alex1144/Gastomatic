@@ -14,9 +14,18 @@ namespace GastoMatic.Models
         public string ApellidoPaterno { get; set; }
         public string ApellidoMaterno { get; set; }
         public string CodigoAcreditacion { get; set; }
-        public UserServiceModel()
-        {
+        public string Perfil { get; set; }
 
+        public UserServiceModel(string userId, string password, string email, string nombre, string apellidopaterno, string apellidomaterno, string numAcreedor, string perfil)
+        {
+            this.Usuario = userId;
+            this.Contrasena = password;
+            this.Correo = email;
+            this.Nombre = nombre;
+            this.ApellidoPaterno = apellidomaterno;
+            this.ApellidoMaterno = apellidomaterno;
+            this.CodigoAcreditacion = numAcreedor;
+            this.Perfil = perfil;
         }
 
         public bool validateUserLogin()
@@ -41,25 +50,28 @@ namespace GastoMatic.Models
         {
             ActiveRecord record = new ActiveRecord();
             record.ExecuteQuery("SELECT usuario FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
-            if (record.rows.count > 0 )
+            if (record.rows.count > 0)
                 return record.rows;
             else
-                return null
+                return null;
         }
 
         private string getDatabasePassword(string userId)
         {
             ActiveRecord record = new ActiveRecord();
-            return record.ExecuteQuery("SELECT password FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
+            record.ExecuteQuery("SELECT password FROM CuentaGastosUsuarios WHERE Usuario = @UserId");
+            if (record.rows.count > 0)
+                return record.rows;
+            else
+                return null;
         }
 
      
 
 
-        public bool createUser(string userId, string password, string email, string nombre, string apellidopaterno, string apellidomaterno, string numAcreedor, string perfil)
+        public bool createUser()
         {
-            this.Usuario = userId;
-            string validateUserExists = getDatabaseUser(userId);
+            string validateUserExists = getDatabaseUser(this.Usuario);
             if (validateUserExists!=null)
             {
 
