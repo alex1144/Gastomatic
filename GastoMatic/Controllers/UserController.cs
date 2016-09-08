@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GastoMatic.Models;
 
 namespace GastoMatic.Controllers
 {
@@ -22,6 +23,24 @@ namespace GastoMatic.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Login(FormCollection collection)
+        {
+            UserServiceModel user = new UserServiceModel();
+
+            user.Usuario = collection["Usuario"];
+            user.Contrasena = collection["Contrasena"];
+            bool loginOK = user.validateUserLogin();
+            if (loginOK)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+
+                return View();
+            }
+        }
         //
         // GET: /User/Details/5
 
@@ -33,7 +52,7 @@ namespace GastoMatic.Controllers
         //
         // GET: /User/Create
 
-        public ActionResult Create()
+        public ActionResult CreateUser()
         {
             return View();
         } 

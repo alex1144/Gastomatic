@@ -142,7 +142,11 @@
     <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+
     <Content Include="Views\CuentaGastoDetalle\Index.cshtml" />
+
+    <Content Include="Views\User\CreateUser.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\CuentaGasto\Create.cshtml" />

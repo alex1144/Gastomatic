@@ -13,11 +13,8 @@
 
  <script type="text/javascript">
      $("#btnCreate").click(function () {
-         $.ajax(
-            {
-                type: "POST",
-                url: "/user/Create"
-            });
+         $.post("/user/CreateUser", function (data, status) {
+         });
         });
         $("#btnEdit").click(function () {
             $.ajax(
