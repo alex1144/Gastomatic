@@ -89,7 +89,9 @@ namespace GastoMatic.Controllers
             {
                 IdCuentaGastosDetalle = id
             };
-            return View(cgd.verCuentaGastosDetalle());
+            var model = cgd.verCuentaGastosDetalle();
+            ViewBag.CuentaGastoId = cgd.CuentaGastoId;
+            return View(model);
         }
 
         //
