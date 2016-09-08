@@ -137,7 +137,7 @@ namespace GastoMatic.Models
         public bool createUser()
         {
             bool validateUserExists = userExists(this.Usuario);
-            if (validateUserExists==true)
+            if (validateUserExists == true)
             {
 
                 return false;
