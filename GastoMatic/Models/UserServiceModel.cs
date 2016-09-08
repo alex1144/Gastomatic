@@ -103,13 +103,38 @@ namespace GastoMatic.Models
                 return false;
             }
         }
-     
 
+        public bool userExists(string user)
+        {
+            try
+            {
+                string datosConexion = this.cadenaConexion;
+                using (SqlConnection con = new SqlConnection(datosConexion))
+                {
+                    //Paso 2 - Abrir la conexión
+                    con.Open();
+
+                    string textoCmd = "SELECT * FROM CuentaGastosUsuarios WHERE Usuario = '" + user + "'";
+                    SqlCommand cmd = new SqlCommand(textoCmd, con);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.RecordsAffected > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
 
         public bool createUser()
         {
-            string validateUserExists = getDatabaseUser(this.Usuario);
-            if (validateUserExists!=null)
+            bool validateUserExists = userExists(this.Usuario);
+            if (validateUserExists==true)
             {
 
                 return false;
