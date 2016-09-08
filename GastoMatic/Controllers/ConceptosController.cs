@@ -88,7 +88,28 @@ namespace GastoMatic.Controllers
             }
             return View(cs);
         }
+        
+        //
+        // POST: /CuentaGasto/Update
 
+        public ActionResult Delete(int id)
+        {
+            ConceptosServiceModel cs = new ConceptosServiceModel();
+            try
+            {
+                // TODO: Add insert logic here()
+                cs.IdConcepto = id;
+                if (cs.BorraConcepto())
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch
+            {
+                return View(cs);
+            }
+            return View(cs);
+        }
         public bool ValidateFields() {
             bool result = false;
 

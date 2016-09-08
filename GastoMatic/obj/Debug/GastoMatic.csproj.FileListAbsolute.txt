@@ -8,3 +8,8 @@ C:\Users\abecerra\Documents\ProyectoGastomatic\Gastomatic\GastoMatic\bin\GastoMa
 C:\Users\abecerra\Documents\ProyectoGastomatic\Gastomatic\GastoMatic\obj\Debug\GastoMatic.csprojResolveAssemblyReference.cache
 C:\Users\abecerra\Documents\ProyectoGastomatic\Gastomatic\GastoMatic\obj\Debug\GastoMatic.dll
 C:\Users\abecerra\Documents\ProyectoGastomatic\Gastomatic\GastoMatic\obj\Debug\GastoMatic.pdb
+D:\ProyectosGit\Gastomatic\GastoMatic\obj\Debug\GastoMatic.csprojResolveAssemblyReference.cache
+D:\ProyectosGit\Gastomatic\GastoMatic\obj\Debug\GastoMatic.dll
+D:\ProyectosGit\Gastomatic\GastoMatic\bin\GastoMatic.dll
+D:\ProyectosGit\Gastomatic\GastoMatic\bin\GastoMatic.pdb
+D:\ProyectosGit\Gastomatic\GastoMatic\obj\Debug\GastoMatic.pdb

@@ -112,6 +112,34 @@ namespace GastoMatic.Models
             }
             return Result;
         }
+        public bool BorraConcepto()
+        {
+            bool Result = false;
+            string datosConexion = this.cadenaConexion;
+            SqlConnection con = new SqlConnection();
+            try
+            {
+                using (con = new SqlConnection(datosConexion))
+                {
+                    con.Open();
+                    string textoCmd = " Delete from CuentaGastosConceptos " +
+                                               " where CuentaGastoConceptoId=@CuentaGastoConceptoId ";
+                    SqlCommand cmd = new SqlCommand(textoCmd, con);
+                    cmd.Parameters.Add(new SqlParameter() { ParameterName = "@CuentaGastoConceptoId", Value = this.IdConcepto, SqlDbType = SqlDbType.Int });
+                    cmd.ExecuteNonQuery();
+                    Result = true;
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            if (con != null && con.State == ConnectionState.Open)
+            {
+                con.Close();
+            }
+            return Result;
+        }
         public ArrayList GetListCuentaGastos() {
             ArrayList Result = new ArrayList();
             string datosConexion = this.cadenaConexion;
