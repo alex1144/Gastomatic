@@ -181,7 +181,7 @@ namespace GastoMatic.Models
             }
         }
 
-        public bool createUser()
+        public bool createUser(string userId)
         {
             bool validateUserExists = userExists(this.Usuario);
             if (validateUserExists==true)
@@ -191,12 +191,38 @@ namespace GastoMatic.Models
             }
             else
             {
-                ActiveRecord record = new ActiveRecord();
-                string insertUser = "INSERT INTO CuentaGastosUsuarios (Usuario, Contrasena, Nombre,ApellidoPaterno,ApellidoMaterno,NumeroAcreedor,email,Perfil) VALUES (";
-              
+                try
+                {
+                    string datosConexion = this.cadenaConexion;
+                    using (SqlConnection con = new SqlConnection(datosConexion))
+                    {
+                        con.Open();
+           
+                        SqlCommand cmd = new SqlCommand("INSERT INTO CuentaGastosUsuarios (Usuario, Contrasena, Nombre,ApellidoPaterno,ApellidoMaterno,NumeroAcreedor,email,Perfil) VALUES (@User,", con);
+                        cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
+                        cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
+                        cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
+                        cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
+                        cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
+                        cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        reader.Read();
+                        if (reader.HasRows)
+                        {
+                            return true;
+                        }
+                        else 
+                            return false;
 
-               return true;
+                    }
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+
             }
+            
         }
     }
 }
