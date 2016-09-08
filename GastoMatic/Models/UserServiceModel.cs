@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace GastoMatic.Models
 {
@@ -17,16 +18,9 @@ namespace GastoMatic.Models
         public string CodigoAcreditacion { get; set; }
         public string Perfil { get; set; }
 
-        public UserServiceModel(string userId, string password, string email, string nombre, string apellidopaterno, string apellidomaterno, string numAcreedor, string perfil)
+        public UserServiceModel()
         {
-            this.Usuario = userId;
-            this.Contrasena = password;
-            this.Correo = email;
-            this.Nombre = nombre;
-            this.ApellidoPaterno = apellidomaterno;
-            this.ApellidoMaterno = apellidomaterno;
-            this.CodigoAcreditacion = numAcreedor;
-            this.Perfil = perfil;
+
         }
 
         public bool validateUserLogin()
@@ -49,30 +43,39 @@ namespace GastoMatic.Models
 
         private UserServiceModel getDatabaseUser(string userId)
         {
-            UserServiceModel usuario = null;
-            ActiveRecord record = new ActiveRecord();
-            using (SqlConnection con = new SqlConnection(this.cadenaConexion))
+            try
             {
-                con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM CuentaGastosUsuarios WHERE Usuario = @UserId", con);
-                SqlDataReader reader = cmd.ExecuteReader()
-                if (reader.HasRows)
+                UserServiceModel usuario = null;
+                ActiveRecord record = new ActiveRecord();
+                using (SqlConnection con = new SqlConnection(this.cadenaConexion))
                 {
-                    usuario = new UserServiceModel{
-                        Usuario = reader.Getvalue("usuario"),
-                        Contrasena = rows.password,
-                        Correo = rows.email,
-                        Nombre = rows.nombre,
-                        ApellidoPaterno = rows.Apellido,
-                        ApellidoMaterno = rows.ApeMat,
-                        CodigoAcreditacion = rows.codigo,
-                        Perfil = rows.perfil
-                    };
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM CuentaGastosUsuarios WHERE Usuario = @User", con);
+                    cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    reader.Read();
+                    if (reader.HasRows)
+                    {
+                        usuario = new UserServiceModel{
+                            Usuario = reader.GetString(0).ToString(),
+                            Contrasena = reader.GetString(1).ToString(),
+                            Correo = reader.GetString(2).ToString(),
+                            Nombre = reader.GetString(3).ToString(),
+                            ApellidoPaterno = reader.GetString(4).ToString(),
+                            ApellidoMaterno = reader.GetString(5).ToString(),
+                            CodigoAcreditacion = reader.GetString(6).ToString(),
+                            Perfil = reader.GetString(7).ToString()
+                        };
+                        return usuario;
+                    } 
                 }
-            }
-            return usuario;
-            else
-                return null;
+                }
+                 catch (Exception ex)
+                {
+                    con.Close();
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
         }
 
         private bool deleteDatabaseUser(string userId)
