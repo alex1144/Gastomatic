@@ -43,39 +43,45 @@ namespace GastoMatic.Models
 
         private UserServiceModel getDatabaseUser(string userId)
         {
-            try
-            {
                 UserServiceModel usuario = null;
                 ActiveRecord record = new ActiveRecord();
                 using (SqlConnection con = new SqlConnection(this.cadenaConexion))
                 {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM CuentaGastosUsuarios WHERE Usuario = @User", con);
-                    cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    reader.Read();
-                    if (reader.HasRows)
+                    try
                     {
-                        usuario = new UserServiceModel{
-                            Usuario = reader.GetString(0).ToString(),
-                            Contrasena = reader.GetString(1).ToString(),
-                            Correo = reader.GetString(2).ToString(),
-                            Nombre = reader.GetString(3).ToString(),
-                            ApellidoPaterno = reader.GetString(4).ToString(),
-                            ApellidoMaterno = reader.GetString(5).ToString(),
-                            CodigoAcreditacion = reader.GetString(6).ToString(),
-                            Perfil = reader.GetString(7).ToString()
-                        };
-                        return usuario;
-                    } 
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM CuentaGastosUsuarios WHERE Usuario = @User", con);
+                        cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        reader.Read();
+                        if (reader.HasRows)
+                        {
+                            usuario = new UserServiceModel
+                            {
+                                Usuario = reader.GetString(0).ToString(),
+                                Contrasena = reader.GetString(1).ToString(),
+                                Correo = reader.GetString(2).ToString(),
+                                Nombre = reader.GetString(3).ToString(),
+                                ApellidoPaterno = reader.GetString(4).ToString(),
+                                ApellidoMaterno = reader.GetString(5).ToString(),
+                                CodigoAcreditacion = reader.GetString(6).ToString(),
+                                Perfil = reader.GetString(7).ToString()
+                            };
+                            return usuario;
+                        }
+                        else
+                        {
+                            throw new ArgumentException("No se obtuvuieron registros");
+                        }
+                    }
+                     catch (Exception ex)
+                    {
+                        con.Close();
+                        Console.WriteLine(ex.Message);
+                        return null;
+                    }
                 }
-                }
-                 catch (Exception ex)
-                {
-                    con.Close();
-                    Console.WriteLine(ex.Message);
-                    return null;
-                }
+                
         }
 
         private bool deleteDatabaseUser(string userId)
@@ -137,7 +143,7 @@ namespace GastoMatic.Models
         public bool createUser()
         {
             bool validateUserExists = userExists(this.Usuario);
-            if (validateUserExists == true)
+            if (validateUserExists==true)
             {
 
                 return false;
