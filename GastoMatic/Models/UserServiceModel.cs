@@ -85,6 +85,49 @@ namespace GastoMatic.Models
                 
         }
 
+        public List<UserServiceModel> getUsersList()
+        {
+            ActiveRecord record = new ActiveRecord();
+            using (SqlConnection con = new SqlConnection(this.cadenaConexion))
+            {
+                try
+                {
+                    List<UserServiceModel> usuarios = new List<UserServiceModel>();
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM CuentaGastosUsuarios order by UsuarioId asc", con);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        usuarios.Add(new UserServiceModel
+                        {
+                            Usuario = reader.GetString(1).ToString(),
+                            Contrasena = reader.GetString(2).ToString(),
+                            Correo = reader.GetString(3).ToString(),
+                            Nombre = reader.GetString(4).ToString(),
+                            ApellidoPaterno = reader.GetString(5).ToString(),
+                            ApellidoMaterno = reader.GetString(6).ToString(),
+                            CodigoAcreditacion = reader.GetString(7).ToString(),
+                            Perfil = reader.GetString(8).ToString()
+                        });
+                    }
+                    if (usuarios.Count > 0)
+                        return usuarios;
+                    else
+                    {
+                        throw new ArgumentException("No se obtuvuieron registros para el listado de usuarios");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    con.Close();
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+
+        }
+
         public bool updateDatabaseUser(string userId)
         {
             ActiveRecord record = new ActiveRecord();
