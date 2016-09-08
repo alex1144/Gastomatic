@@ -1,0 +1,15 @@
+c:\users\bzavala\documents\visual studio 2010\Projects\GastoMatic\GastoMatic\bin\GastoMatic.dll
+c:\users\bzavala\documents\visual studio 2010\Projects\GastoMatic\GastoMatic\bin\GastoMatic.pdb
+c:\users\bzavala\documents\visual studio 2010\Projects\GastoMatic\GastoMatic\obj\Debug\GastoMatic.csprojResolveAssemblyReference.cache
+c:\users\bzavala\documents\visual studio 2010\Projects\GastoMatic\GastoMatic\obj\Debug\GastoMatic.dll
+c:\users\bzavala\documents\visual studio 2010\Projects\GastoMatic\GastoMatic\obj\Debug\GastoMatic.pdb
+C:\Users\abecerra\Documents\ProyectoGastomatic\Gastomatic\GastoMatic\bin\GastoMatic.dll
+C:\Users\abecerra\Documents\ProyectoGastomatic\Gastomatic\GastoMatic\bin\GastoMatic.pdb
+C:\Users\abecerra\Documents\ProyectoGastomatic\Gastomatic\GastoMatic\obj\Debug\GastoMatic.csprojResolveAssemblyReference.cache
+C:\Users\abecerra\Documents\ProyectoGastomatic\Gastomatic\GastoMatic\obj\Debug\GastoMatic.dll
+C:\Users\abecerra\Documents\ProyectoGastomatic\Gastomatic\GastoMatic\obj\Debug\GastoMatic.pdb
+D:\ProyectosGit\Gastomatic\GastoMatic\obj\Debug\GastoMatic.dll
+D:\ProyectosGit\Gastomatic\GastoMatic\bin\GastoMatic.dll
+D:\ProyectosGit\Gastomatic\GastoMatic\bin\GastoMatic.pdb
+D:\ProyectosGit\Gastomatic\GastoMatic\obj\Debug\GastoMatic.pdb
+D:\ProyectosGit\Gastomatic\GastoMatic\bin\zxing.dll
