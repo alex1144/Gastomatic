@@ -1,0 +1,36 @@
+﻿@model GastoMatic.Models.UserServiceModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<ul>
+<li><button id="btnCreate">Crear Usuario</button></li>
+<li><button id="btnEdit">Editar Usuario</button></li>
+<li><button id="btnDelete">Borrar Usuario</button></li>
+</ul>
+<h2>Bienvenido "Usuario"</h2>
+
+ <script type="text/javascript">
+     $("#btnCreate").click(function () {
+         $.ajax(
+            {
+                type: "POST",
+                url: "/user/Create"
+            });
+        });
+        $("#btnEdit").click(function () {
+            $.ajax(
+            {
+                type: "POST",
+                url: "/user/Edit"
+            });
+        });
+        $("#btnDelete").click(function () {
+            $.ajax(
+            {
+                type: "POST",
+                url: "/user/Delete"
+            });
+        });
+ </script>

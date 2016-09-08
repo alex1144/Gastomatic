@@ -71,7 +71,9 @@
     <Compile Include="Models\ConceptosServiceModel.cs" />
     <Compile Include="Models\CuentaGastos.cs" />
     <Compile Include="Models\CuentaGastosDetalle.cs" />
-    <Compile Include="Models\UserServiceModel.cs" />
+    <Compile Include="Models\UserServiceModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
