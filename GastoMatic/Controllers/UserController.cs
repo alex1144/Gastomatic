@@ -11,7 +11,7 @@ namespace GastoMatic.Controllers
         //
         // GET: /User/
 
-        public ActionResult Index()
+        public ActionResult Login()
         {
             return View();
         }
