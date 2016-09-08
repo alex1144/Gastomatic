@@ -58,7 +58,7 @@
             @Html.LabelFor(model => model.IdConcepto)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.IdConcepto)
+             @Html.DropDownListFor(model => model.IdConcepto, (SelectList)ViewBag.Lista)
             @Html.ValidationMessageFor(model => model.IdConcepto)
         </div>
 

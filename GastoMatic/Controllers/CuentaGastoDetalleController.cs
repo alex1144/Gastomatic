@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -42,8 +43,25 @@ namespace GastoMatic.Controllers
                 {
                     IdCuentaGastos = id
                 };
+
                 CuentaGastosDetalle cgd = new CuentaGastosDetalle();
                 ViewBag.Model = cg.verCuentaGastos();
+                ConceptosServiceModel cs = new ConceptosServiceModel();
+                List<ConceptosServiceModel> lis = new List<ConceptosServiceModel>();
+                //
+                lis.Add(new ConceptosServiceModel
+                {
+                    IdConcepto = 0,
+                    Nombre = "Selecciona una opcion"
+                });
+                foreach(ConceptosServiceModel concepto in cs.GetListCuentaGastos()){
+                    lis.Add(new ConceptosServiceModel {
+                       IdConcepto =  concepto.IdConcepto,
+                       Nombre = concepto.Nombre
+                    });
+                }
+                SelectList lista = new SelectList(lis, "IdConcepto", "Nombre", 0);
+                ViewBag.Lista = lista;
                 return View();
             }
             else
@@ -91,6 +109,24 @@ namespace GastoMatic.Controllers
             };
             var model = cgd.verCuentaGastosDetalle();
             ViewBag.CuentaGastoId = cgd.CuentaGastoId;
+            ConceptosServiceModel cs = new ConceptosServiceModel();
+            List<ConceptosServiceModel> lis = new List<ConceptosServiceModel>();
+            //
+            lis.Add(new ConceptosServiceModel
+            {
+                IdConcepto = 0,
+                Nombre = "Selecciona una opcion"
+            });
+            foreach (ConceptosServiceModel concepto in cs.GetListCuentaGastos())
+            {
+                lis.Add(new ConceptosServiceModel
+                {
+                    IdConcepto = concepto.IdConcepto,
+                    Nombre = concepto.Nombre
+                });
+            }
+            SelectList lista = new SelectList(lis, "IdConcepto", "Nombre", 0);
+            ViewBag.Lista = lista;
             return View(model);
         }
 
