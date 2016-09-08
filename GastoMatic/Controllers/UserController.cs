@@ -52,7 +52,7 @@ namespace GastoMatic.Controllers
         //
         // GET: /User/Create
 
-        public ActionResult Create()
+        public ActionResult CreateUser()
         {
             return View();
         } 
