@@ -35,7 +35,7 @@ namespace GastoMatic.Models
                 else
                     throw new Exception("No existe el usuario ");
             } 
-            catch
+            catch(Exception e)
             {
                 return false;
             }
@@ -59,7 +59,7 @@ namespace GastoMatic.Models
                         {
                             usuario = new UserServiceModel
                             {
-                                Usuario = reader.GetString(0).ToString(),
+                                Usuario = reader.GetString(1).ToString(),
                                 Contrasena = reader.GetString(1).ToString(),
                                 Correo = reader.GetString(2).ToString(),
                                 Nombre = reader.GetString(3).ToString(),
