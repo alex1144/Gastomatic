@@ -198,14 +198,14 @@ namespace GastoMatic.Models
                         con.Open();
 
                         SqlCommand cmd = new SqlCommand("INSERT INTO CuentaGastosUsuarios (Usuario, Contrasena, Nombre,ApellidoPaterno,ApellidoMaterno,NumeroAcreedor,email,Perfil) VALUES (@User,@Contrasena,@Nombre,@ApellidoPaterno,@ApellidoMaterno,@NumeroAcreedor,@email,@Perfil)", con);
-                        cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
-                        cmd.Parameters.Add(new SqlParameter("@Contrasena", SqlDbType.VarChar)).Value = password;
-                        cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.VarChar)).Value = nombre;
-                        cmd.Parameters.Add(new SqlParameter("@ApellidoPaterno", SqlDbType.VarChar)).Value = aPaterno;
-                        cmd.Parameters.Add(new SqlParameter("@ApellidoMaterno", SqlDbType.VarChar)).Value = aMaterno;
-                        cmd.Parameters.Add(new SqlParameter("@NumeroAcreedor", SqlDbType.VarChar)).Value = numAcreedor;
-                        cmd.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar)).Value = email;
-                        cmd.Parameters.Add(new SqlParameter("@Perfil", SqlDbType.VarChar)).Value = perfil;
+                        //cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
+                        //cmd.Parameters.Add(new SqlParameter("@Contrasena", SqlDbType.VarChar)).Value = password;
+                        //cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.VarChar)).Value = nombre;
+                        //cmd.Parameters.Add(new SqlParameter("@ApellidoPaterno", SqlDbType.VarChar)).Value = aPaterno;
+                        //cmd.Parameters.Add(new SqlParameter("@ApellidoMaterno", SqlDbType.VarChar)).Value = aMaterno;
+                        //cmd.Parameters.Add(new SqlParameter("@NumeroAcreedor", SqlDbType.VarChar)).Value = numAcreedor;
+                        //cmd.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar)).Value = email;
+                        //cmd.Parameters.Add(new SqlParameter("@Perfil", SqlDbType.VarChar)).Value = perfil;
                         
 
                         SqlDataReader reader = cmd.ExecuteReader();
