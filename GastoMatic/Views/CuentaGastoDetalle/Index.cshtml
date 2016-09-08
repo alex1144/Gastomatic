@@ -1,0 +1,77 @@
+﻿@model IEnumerable<GastoMatic.Models.CuentaGastosDetalle>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { id = ViewBag.id })
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            IdCuentaGastosDetalle
+        </th>
+        <th>
+            Fecha
+        </th>
+        <th>
+            Monto
+        </th>
+        <th>
+            FolioFactura
+        </th>
+        <th>
+            Descripcion
+        </th>
+        <th>
+            IdConcepto
+        </th>
+        <th>
+            MetodoPago
+        </th>
+        <th>
+            CuentaGastoId
+        </th>
+    </tr>
+
+@foreach (var item in ViewBag.Model)
+{
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.IdCuentaGastosDetalle }) |
+            @Html.ActionLink("Details", "Details", new { id = item.IdCuentaGastosDetalle }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IdCuentaGastosDetalle })
+        </td>
+        <td>
+            @item.IdCuentaGastosDetalle
+        </td>
+        <td>
+            @String.Format("{0:g}", item.Fecha)
+        </td>
+        <td>
+            @String.Format("{0:F}", item.Monto)
+        </td>
+        <td>
+            @item.FolioFactura
+        </td>
+        <td>
+            @item.Descripcion
+        </td>
+        <td>
+            @item.IdConcepto
+        </td>
+        <td>
+            @item.MetodoPago
+        </td>
+        <td>
+            @item.CuentaGastoId
+        </td>
+    </tr>
+}
+
+</table>
+

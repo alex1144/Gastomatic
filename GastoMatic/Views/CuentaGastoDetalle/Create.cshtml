@@ -1,0 +1,81 @@
+﻿@model GastoMatic.Models.CuentaGastosDetalle
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>CuentaGastosDetalle</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Fecha)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fecha)
+            @Html.ValidationMessageFor(model => model.Fecha)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Monto)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Monto)
+            @Html.ValidationMessageFor(model => model.Monto)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FolioFactura)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FolioFactura)
+            @Html.ValidationMessageFor(model => model.FolioFactura)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Descripcion)
+            @Html.ValidationMessageFor(model => model.Descripcion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdConcepto)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IdConcepto)
+            @Html.ValidationMessageFor(model => model.IdConcepto)
+        </div>
+
+        <div class="editor-label">
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.CuentaGastoId, new { @Value = ViewBag.Model.IdCuentaGastos, @type = "hidden" })
+            @Html.ValidationMessageFor(model => model.CuentaGastoId)
+        </div>
+
+        <div class"editor-label">
+            @Html.LabelFor(model => model.MetodoPago)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MetodoPago)
+            @Html.ValidationMessageFor(model => model.MetodoPago)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", new { id = ViewBag.Model.IdCuentaGastos })
+</div>
+

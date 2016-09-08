@@ -1,0 +1,45 @@
+﻿@model GastoMatic.Models.CuentaGastosDetalle
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>CuentaGastosDetalle</legend>
+
+    <div class="display-label">IdCuentaGastosDetalle</div>
+    <div class="display-field">@Model.IdCuentaGastosDetalle</div>
+
+    <div class="display-label">Fecha</div>
+    <div class="display-field">@String.Format("{0:g}", Model.Fecha)</div>
+
+    <div class="display-label">Monto</div>
+    <div class="display-field">@String.Format("{0:F}", Model.Monto)</div>
+
+    <div class="display-label">FolioFactura</div>
+    <div class="display-field">@Model.FolioFactura</div>
+
+    <div class="display-label">Descripcion</div>
+    <div class="display-field">@Model.Descripcion</div>
+
+    <div class="display-label">IdConcepto</div>
+    <div class="display-field">@Model.IdConcepto</div>
+
+    <div class="display-label">MetodoPago</div>
+    <div class="display-field">@Model.MetodoPago</div>
+
+    <div class="display-label">CuentaGastoId</div>
+    <div class="display-field">@Model.CuentaGastoId</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.TextBoxFor(model => model.CuentaGastoId, new { @type = "hidden" })
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+

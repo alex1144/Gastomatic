@@ -1,0 +1,33 @@
+﻿@model GastoMatic.Models.CuentaGastosDetalle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CuentaGastos</legend>
+
+    <div class="display-label">IdCuentaGastos</div>
+    <div class="display-field">@ViewBag.Model.IdCuentaGastos</div>
+
+    <div class="display-label">FechaCreacion</div>
+    <div class="display-field">@String.Format("{0:g}", ViewBag.Model.FechaCreacion)</div>
+
+    <div class="display-label">FechaInicial</div>
+    <div class="display-field">@String.Format("{0:g}", ViewBag.Model.FechaInicial)</div>
+
+    <div class="display-label">FechaFinal</div>
+    <div class="display-field">@String.Format("{0:g}", ViewBag.Model.FechaFinal)</div>
+
+    <div class="display-label">NumeroAcreedor</div>
+    <div class="display-field">@ViewBag.Model.NumeroAcreedor</div>
+
+    <div class="display-label">Descripcion</div>
+    <div class="display-field">@ViewBag.Model.Descripcion</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
