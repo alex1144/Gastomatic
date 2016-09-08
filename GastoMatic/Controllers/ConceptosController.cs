@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Drawing;
+using System.IO;
+using System.Web.Services;
 using GastoMatic.Models;
 
 namespace GastoMatic.Controllers
@@ -57,7 +60,7 @@ namespace GastoMatic.Controllers
         {
             ConceptosServiceModel cs = new ConceptosServiceModel();
             cs.IdConcepto = id;
-            if (cs.GetCuentaGastos()) {
+            if (cs.GetCuentaGastosConceptos()) {
                 //ViewBag.Model = cs;
             }
 
