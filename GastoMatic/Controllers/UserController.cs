@@ -61,12 +61,21 @@ namespace GastoMatic.Controllers
         // POST: /User/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreateUser(FormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                UserServiceModel user = new UserServiceModel();
+                user.Usuario = collection["Usuario"];
+                user.Contrasena = collection["Contrasena"];
+                user.Correo = collection["Correo"];
+                user.Nombre = collection["Nombre"];
+                user.ApellidoPaterno = collection["ApellidoPaterno"];
+                user.ApellidoMaterno = collection["ApellidoMaterno"];
+                user.CodigoAcreditacion = collection["CodigoAcreditacion"];
+                user.Perfil = collection["Perfil"];
+                
+                
                 return RedirectToAction("Index");
             }
             catch
