@@ -1,0 +1,46 @@
+﻿@model IEnumerable<GastoMatic.Models.ConceptosServiceModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th style="width:150px; text-align:left"></th>
+        <th style="width:100px; text-align:left">
+            IdConcepto
+        </th>
+        <th style="width:250px; text-align:left">
+            Nombre
+        </th>
+        <th style="width:550px; text-align:left"">
+            Descripcion
+        </th>
+    </tr>
+
+@foreach (var item in ViewBag.Models) {
+    <tr>
+        <td style="width:150px; text-align:left">
+            @Html.ActionLink("Update", "Update", new { id = item.IdConcepto }) |
+            @*@Html.ActionLink("Details", "Details", new { id = item.IdConcepto }) |*@
+            @Html.ActionLink("Delete", "Delete", new { id = item.IdConcepto })
+        </td>
+        <td style="width:100px; text-align:left">
+            @item.IdConcepto
+        </td>
+        <td style="width:250px; text-align:left">
+            @item.Nombre
+        </td>
+        <td style="width:550px; text-align:left">
+            @item.Descripcion
+        </td>
+    </tr>
+}
+
+</table>
+
