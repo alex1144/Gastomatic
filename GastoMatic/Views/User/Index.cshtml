@@ -3,13 +3,12 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<h2>Bienvenido</h2>
 <ul>
 
-<li><button id="btnEdit">Editar Usuario</button></li>
-<li><button id="btnDelete">Borrar Usuario</button></li>
+<li>@Html.ActionLink("Gestionar mis gastos", "../CuentaGasto")</li>
 </ul>
-<h2>Bienvenido "Usuario"</h2>
+
 
  <script type="text/javascript">
      $("#btnCreate").click(function () {

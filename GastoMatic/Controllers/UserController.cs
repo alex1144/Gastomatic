@@ -51,7 +51,10 @@ namespace GastoMatic.Controllers
 
         //
         // GET: /User/Create
-
+        public ActionResult CuentaCreada()
+        {
+            return View();
+        } 
         public ActionResult CreateUser()
         {
             return View();
@@ -74,9 +77,9 @@ namespace GastoMatic.Controllers
                 user.ApellidoMaterno = collection["ApellidoMaterno"];
                 user.CodigoAcreditacion = collection["CodigoAcreditacion"];
                 user.Perfil = collection["Perfil"];
-                
-                
-                return RedirectToAction("Index");
+
+                user.createUser();
+                return RedirectToAction("CuentaCreada");
             }
             catch
             {
