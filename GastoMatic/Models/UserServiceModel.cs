@@ -87,7 +87,6 @@ namespace GastoMatic.Models
 
         public bool updateDatabaseUser(string userId)
         {
-            UserServiceModel usuario = null;
             ActiveRecord record = new ActiveRecord();
             using (SqlConnection con = new SqlConnection(this.cadenaConexion))
             {
@@ -108,7 +107,7 @@ namespace GastoMatic.Models
                     SqlDataReader reader = cmd.ExecuteNonQuery();
                     if (reader)
                     {
-                        return usuario;
+                        return true;
                     }
                     else
                     {
@@ -119,7 +118,7 @@ namespace GastoMatic.Models
                 {
                     con.Close();
                     Console.WriteLine(ex.Message);
-                    return null;
+                    return false;
                 }
             }
 
