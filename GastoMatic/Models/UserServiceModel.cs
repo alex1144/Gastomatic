@@ -153,7 +153,7 @@ namespace GastoMatic.Models
             {
                 ActiveRecord record = new ActiveRecord();
                 string insertUser = "INSERT INTO CuentaGastosUsuarios (Usuario, Contrasena, Nombre,ApellidoPaterno,ApellidoMaterno,NumeroAcreedor,email,Perfil) VALUES (";
-               record.ExecuteQuery(insertUser);
+              
 
                return true;
             }
