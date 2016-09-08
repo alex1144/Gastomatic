@@ -142,11 +142,11 @@
     <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
+
     <Content Include="Views\CuentaGastoDetalle\Index.cshtml" />
-=======
+
     <Content Include="Views\User\CreateUser.cshtml" />
->>>>>>> Stashed changes
+
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
