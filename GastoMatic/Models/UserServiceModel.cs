@@ -60,13 +60,13 @@ namespace GastoMatic.Models
                             usuario = new UserServiceModel
                             {
                                 Usuario = reader.GetString(1).ToString(),
-                                Contrasena = reader.GetString(1).ToString(),
-                                Correo = reader.GetString(2).ToString(),
-                                Nombre = reader.GetString(3).ToString(),
-                                ApellidoPaterno = reader.GetString(4).ToString(),
-                                ApellidoMaterno = reader.GetString(5).ToString(),
-                                CodigoAcreditacion = reader.GetString(6).ToString(),
-                                Perfil = reader.GetString(7).ToString()
+                                Contrasena = reader.GetString(2).ToString(),
+                                Correo = reader.GetString(3).ToString(),
+                                Nombre = reader.GetString(4).ToString(),
+                                ApellidoPaterno = reader.GetString(5).ToString(),
+                                ApellidoMaterno = reader.GetString(6).ToString(),
+                                CodigoAcreditacion = reader.GetString(7).ToString(),
+                                Perfil = reader.GetString(8).ToString()
                             };
                             return usuario;
                         }
