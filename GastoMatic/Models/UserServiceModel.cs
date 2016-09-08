@@ -26,8 +26,9 @@ namespace GastoMatic.Models
         public bool validateUserLogin()
         {
             try{
-                if (getDatabaseUser() == this.Usuario)
-                    if (getDatabasePassword() == this.Contrasena)
+                UserServiceModel user = getDatabaseUser(this.Usuario);
+                if (user.Usuario == this.Usuario)
+                    if (user.Contrasena == this.Contrasena)
                         return true;
                     else
                         throw new Exception("La contraseña es incorrecta");
