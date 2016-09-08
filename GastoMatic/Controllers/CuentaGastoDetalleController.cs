@@ -37,7 +37,7 @@ namespace GastoMatic.Controllers
 
         public ActionResult Create(int id)
         {
-            if (id > 0 && id != null)
+            if (id > 0)
             {
                 CuentaGastos cg = new CuentaGastos()
                 {
