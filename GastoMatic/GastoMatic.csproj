@@ -59,11 +59,14 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="zxing">
+      <HintPath>DLL\zxing.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ConceptosController.cs" />
     <Compile Include="Controllers\CuentaGastoController.cs" />
-    <Compile Include="Controllers\CuentaGastoDetalleController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -72,9 +75,7 @@
     <Compile Include="Models\ConceptosServiceModel.cs" />
     <Compile Include="Models\CuentaGastos.cs" />
     <Compile Include="Models\CuentaGastosDetalle.cs" />
-    <Compile Include="Models\UserServiceModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Models\UserServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -134,30 +135,6 @@
     <Content Include="Views\Conceptos\Create.cshtml" />
     <Content Include="Views\Conceptos\Index.cshtml" />
     <Content Include="Views\Conceptos\Update.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\User\Login.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\User\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-
-    <Content Include="Views\CuentaGastoDetalle\Index.cshtml" />
-
-    <Content Include="Views\User\CreateUser.cshtml" />
-
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\CuentaGasto\Create.cshtml" />
-    <Content Include="Views\CuentaGasto\Delete.cshtml" />
-    <Content Include="Views\CuentaGasto\Details.cshtml" />
-    <Content Include="Views\CuentaGasto\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\CuentaGastoDetalle\Create.cshtml" />
-    <Content Include="Views\CuentaGastoDetalle\Delete.cshtml" />
-    <Content Include="Views\CuentaGastoDetalle\Edit.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

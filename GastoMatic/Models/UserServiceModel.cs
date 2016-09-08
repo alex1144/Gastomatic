@@ -35,7 +35,7 @@ namespace GastoMatic.Models
                 else
                     throw new Exception("No existe el usuario ");
             } 
-            catch(Exception e)
+            catch
             {
                 return false;
             }
@@ -59,14 +59,14 @@ namespace GastoMatic.Models
                         {
                             usuario = new UserServiceModel
                             {
-                                Usuario = reader.GetString(1).ToString(),
-                                Contrasena = reader.GetString(2).ToString(),
-                                Correo = reader.GetString(3).ToString(),
-                                Nombre = reader.GetString(4).ToString(),
-                                ApellidoPaterno = reader.GetString(5).ToString(),
-                                ApellidoMaterno = reader.GetString(6).ToString(),
-                                CodigoAcreditacion = reader.GetString(7).ToString(),
-                                Perfil = reader.GetString(8).ToString()
+                                Usuario = reader.GetString(0).ToString(),
+                                Contrasena = reader.GetString(1).ToString(),
+                                Correo = reader.GetString(2).ToString(),
+                                Nombre = reader.GetString(3).ToString(),
+                                ApellidoPaterno = reader.GetString(4).ToString(),
+                                ApellidoMaterno = reader.GetString(5).ToString(),
+                                CodigoAcreditacion = reader.GetString(6).ToString(),
+                                Perfil = reader.GetString(7).ToString()
                             };
                             return usuario;
                         }
@@ -198,7 +198,7 @@ namespace GastoMatic.Models
                         con.Open();
 
                         SqlCommand cmd = new SqlCommand("INSERT INTO CuentaGastosUsuarios (Usuario, Contrasena, Nombre,ApellidoPaterno,ApellidoMaterno,NumeroAcreedor,email,Perfil) VALUES (@User,@Contrasena,@Nombre,@ApellidoPaterno,@ApellidoMaterno,@NumeroAcreedor,@email,@Perfil)", con);
-                        //cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
+                        cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
                         //cmd.Parameters.Add(new SqlParameter("@Contrasena", SqlDbType.VarChar)).Value = password;
                         //cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.VarChar)).Value = nombre;
                         //cmd.Parameters.Add(new SqlParameter("@ApellidoPaterno", SqlDbType.VarChar)).Value = aPaterno;

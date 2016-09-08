@@ -14,6 +14,7 @@ namespace GastoMatic.Models
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public ConceptosServiceModel() {
+            this.IdConcepto = -1;
             this.Nombre = string.Empty;
             this.Descripcion = string.Empty;
         }
@@ -27,12 +28,14 @@ namespace GastoMatic.Models
                 {
                     con.Open();
                     string textoCmd = " INSERT INTO CuentaGastosConceptos (Concepto, Descripcion) " +
-                                               " values(@Concepto, @Descripcion) ";
+                                               " values(@Concepto, @Descripcion); " +
+                                               " SELECT SCOPE_IDENTITY();";
                     SqlCommand cmd = new SqlCommand(textoCmd, con);
                     List<SqlParameter> sqlParameters = new List<SqlParameter>();
                     cmd.Parameters.Add(new SqlParameter() {  ParameterName = "@Concepto", Value = this.Nombre, SqlDbType = SqlDbType.VarChar });
                     cmd.Parameters.Add(new SqlParameter() { ParameterName = "@Descripcion", Value = this.Descripcion, SqlDbType = SqlDbType.VarChar });
-                    cmd.ExecuteNonQuery();
+                    //cmd.ExecuteNonQuery();
+                    this.IdConcepto =int.Parse(cmd.ExecuteScalar().ToString());
                     Result = true;
                 }
             }
@@ -46,7 +49,7 @@ namespace GastoMatic.Models
             }
             return Result;
         }
-        public bool GetCuentaGastos() {
+        public bool GetCuentaGastosConceptos() {
             bool Result=false;
             string datosConexion = this.cadenaConexion;
             SqlConnection con = new SqlConnection();
