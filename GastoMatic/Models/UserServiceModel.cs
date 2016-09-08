@@ -42,7 +42,7 @@ namespace GastoMatic.Models
 
         }
 
-        private UserServiceModel getDatabaseUser(string userId)
+        public UserServiceModel getDatabaseUser(string userId)
         {
                 UserServiceModel usuario = null;
                 ActiveRecord record = new ActiveRecord();
@@ -83,6 +83,46 @@ namespace GastoMatic.Models
                     }
                 }
                 
+        }
+
+        public bool updateDatabaseUser(string userId)
+        {
+            UserServiceModel usuario = null;
+            ActiveRecord record = new ActiveRecord();
+            using (SqlConnection con = new SqlConnection(this.cadenaConexion))
+            {
+                try
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("UPDATE CuentaGastosUsuarios " +
+                                                    "SET (Contrasena, Nombre, ApellidoPaterno, ApellidoMaterno, NumeroAcreedor, email, Perfil) " +
+                                                    "VALUES (@Password, @Name, @apePat, @apeMat, @NumAcreedor, @Email, @Perfil) WHERE Usuario = @User", con);
+                    cmd.Parameters.Add(new SqlParameter("@Password", SqlDbType.VarChar)).Value = userId;
+                    cmd.Parameters.Add(new SqlParameter("@Name", SqlDbType.VarChar)).Value = userId;
+                    cmd.Parameters.Add(new SqlParameter("@apePat", SqlDbType.VarChar)).Value = userId;
+                    cmd.Parameters.Add(new SqlParameter("@apeMat", SqlDbType.VarChar)).Value = userId;
+                    cmd.Parameters.Add(new SqlParameter("@NumAcreedor", SqlDbType.VarChar)).Value = userId;
+                    cmd.Parameters.Add(new SqlParameter("@Email", SqlDbType.VarChar)).Value = userId;
+                    cmd.Parameters.Add(new SqlParameter("@Perfil", SqlDbType.VarChar)).Value = userId;
+                    cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
+                    SqlDataReader reader = cmd.ExecuteNonQuery();
+                    if (reader)
+                    {
+                        return usuario;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("No se ejecutaron los cambios registros");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    con.Close();
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+
         }
 
         private bool deleteDatabaseUser(string userId)
