@@ -1,7 +1,78 @@
 ﻿@{
-    ViewBag.Title = "Index";
+   ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Datos leidos de la Factura</h2>
 
-Hola, commit de Darian
+<div id="webcam"></div>
+
+
+
+
+          <div>
+                       <b>campo A:</b> @ViewBag.resultB<br />
+                      <b>campo B:</b> @ViewBag.Contenido<br />
+          </div>
+
+
+<div id="status"></div>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            alert("Alert using jQuery");
+        });
+
+    });
+</script>
+
+
+
+
+@section scripts
+{
+    <script src="@Url.Content("../../Content/jQuery-webcam-master/jquery.webcam.js")">
+    </script>
+    <script>
+        $("#Camera").webcam({
+             width: 520,
+             height: 520,
+             mode: "save",
+             swffile: "@Url.Content("../../Content/jQuery-webcam-master/jscam.swf")",
+             onTick: function () { },
+             onSave: function () {
+             },
+             onCapture: function () {
+                 webcam.save("@Url.Content("~/Home/Capture")/");
+             },
+             debug: function () { },
+             onLoad: function () { }
+         });
+    </script>
+}
+
+
+<h2>Escanear codigo QR:</h2>
+<input type="button" value="Capturar" onclick="webcam.capture();" />
+<div id="Camera"></div>
+
+
+
+
+<div id="camera2"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
