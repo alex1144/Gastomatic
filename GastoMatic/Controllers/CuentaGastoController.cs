@@ -22,6 +22,11 @@ namespace GastoMatic.Controllers
             return View();
         }
 
+        public JsonResult IndexRest() 
+        {
+            CuentaGastos cg = new CuentaGastos();
+            return Json(cg.listCuentaGastos(), JsonRequestBehavior.AllowGet);
+        }
         //
         // GET: /CuentaGasto/Details/5
 

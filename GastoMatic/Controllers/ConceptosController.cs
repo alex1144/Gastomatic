@@ -22,6 +22,12 @@ namespace GastoMatic.Controllers
             ViewBag.Models = cs.GetListCuentaGastos(); ;
             return View();
         }
+
+        public JsonResult IndexRest()
+        {
+            ConceptosServiceModel cs = new ConceptosServiceModel();
+            return Json(cs.GetListCuentaGastos(), JsonRequestBehavior.AllowGet);
+        }
         //
         // GET: /CuentaGasto/Create
 
@@ -32,7 +38,30 @@ namespace GastoMatic.Controllers
 
         //
         // POST: /CuentaGasto/Create
+        [HttpPost]
+        public JsonResult SaveCreate(ConceptosServiceModel collection)
+        {
+            ConceptosServiceModel cs = new ConceptosServiceModel();
+            bool status = false;
+            string message = "";
+            if (ModelState.IsValid)
+            {
+                // TODO: Add insert logic here()
+                cs.Nombre = collection.Nombre;
+                cs.Descripcion = collection.Descripcion;
+                if (cs.CreaConcepto())
+                {
+                    status = true;
+                    message = "Thank you for submit your query";
+                }
+            }
+            else
+            {
+                message = "Failed! Please try again";
+            }
+            return new JsonResult { Data = new { status = status, message = message } };
 
+        }
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {

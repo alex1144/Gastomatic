@@ -103,13 +103,7 @@
     <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\jquery-ui.css" />
-    <Content Include="DLL\MALDITA DLL tienes que subirrrrrrr.txt" />
-    <Content Include="DLL\zxing.dll" />
-    <Content Include="Global.asax" />
-    <Content Include="obj\Debug\GastoMatic.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\GastoMatic.dll" />
-    <Content Include="obj\Debug\GastoMatic.pdb" />
+    <Content Include="Scripts\ConceptoForm.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

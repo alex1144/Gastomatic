@@ -9,58 +9,106 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
-    <tr>
-        <th></th>
-        <th>
-            IdCuentaGastos
-        </th>
-        <th>
-            FechaCreacion
-        </th>
-        <th>
-            FechaInicial
-        </th>
-        <th>
-            FechaFinal
-        </th>
-        <th>
-            NumeroAcreedor
-        </th>
-        <th>
-            Descripcion
-        </th>
-    </tr>
+<div id="tabla"></div>
 
-@foreach (var item in ViewBag.Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.IdCuentaGastos }) |
-            @Html.ActionLink("Agregar", "Create", new { controller = "CuentaGastoDetalle", id = item.IdCuentaGastos }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.IdCuentaGastos })
-        </td>
-        <td>
-            @item.IdCuentaGastos
-        </td>
-        <td>
-            @String.Format("{0:g}", item.FechaCreacion)
-        </td>
-        <td>
-            @String.Format("{0:g}", item.FechaInicial)
-        </td>
-        <td>
-            @String.Format("{0:g}", item.FechaFinal)
-        </td>
-        <td>
-            @item.NumeroAcreedor
-        </td>
-        <td>
-            @item.Descripcion
-        </td>
-    </tr>
-}
+@* ReactJS javascript (JSX) code *@
+    @* Jquery library *@
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+        @* ReactJS library *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react-dom.js"></script>
+        @* JSX converter (JSX to native javascript) *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+ 
+<script type="text/babel">
+ var TablaCuentaGastos = React.createClass({
+        getInitialState : function(){
+            return {
+                data : []
+            };
+        },
+        componentDidMount : function(){
+            //Fetch data from server
+            $.get('/CuentaGasto/IndexRest', function(result){
+                if(this.isMounted){
+                    this.setState({
+                        data : result
+                    });
+                }
+            }.bind(this));
+        },
+        render : function(){
+            var edit = {};
+            var agregar = {};
+            var eliminar = {};
+            var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
+            var fechaInicial = {};
+            var fechaCreacion = {};
+            var fechaFinal = {};
+            return (
+            <table>
+                <tbody>
+                <tr>
+                    <th></th>
+                    <th>
+                        CuentaGastos
+                    </th>
+                    <th>
+                        FechaCreacion
+                    </th>
+                    <th>
+                        Fecha Inicial
+                    </th>
+                    <th>
+                        Fecha Final
+                    </th>
+                    <th>
+                        Numero Acreedor
+                    </th>
+                    <th>
+                        Descripcion
+                    </th>
+                </tr>
+            {
+                this.state.data.map(function(d) {
+                    
+                    edit = { 
+                        href:'/CuentaGasto/Edit/'+d.IdCuentaGastos
+                    };
+                    agregar = { 
+                        href:'/CuentaGastoDetalle/Create/'+d.IdCuentaGastos
+                    };
+                    eliminar = { 
+                        href:'/CuentaGasto/Delete/'+d.IdCuentaGastos
+                    };
+                    fechaInicial = {
+                        valor:new Date(parseInt(d.FechaInicial.replace("/Date(", "").replace(")/",""), 10)).toLocaleDateString ("es-MX" , options)
+                    };
+                    fechaCreacion = {
+                        valor:new Date(parseInt(d.FechaCreacion.replace("/Date(", "").replace(")/",""), 10)).toLocaleDateString ("es-MX" , options)
+                    };
+                    fechaFinal = {
+                        valor:new Date(parseInt(d.FechaFinal.replace("/Date(", "").replace(")/",""), 10)).toLocaleDateString ("es-MX" , options)
+                    };
+                    return <tr key={d.IdCuentaGastos}>
+                            <td><a href={edit.href}>Edit</a>|<a href={agregar.href}>Agregar</a>|<a href={eliminar.href}>Delete</a></td>
+                            <td>{d.IdCuentaGastos}</td>
+                            <td>{fechaCreacion.valor}</td>
+                            <td>{fechaInicial.valor}</td>
+                            <td>{fechaFinal.valor}</td>
+                            <td>{d.NumeroAcreedor}</td>
+                            <td>{d.Descripcion}</td>
+                           </tr>
+                })
+            }
+            </tbody>
+            </table>
+        );
+        }
+    
+    });
+ 
+    ReactDOM.render(<TablaCuentaGastos/>,document.getElementById("tabla"));
+</script>
 
 
-</table>
-
-@Html.Hidden("campo", (string)ViewBag.json)
