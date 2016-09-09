@@ -47,7 +47,8 @@ namespace GastoMatic.Controllers
             ViewBag.resultB = A;
             ViewBag.Contenido = B;
 
-            return View();
+           // return View();
+            return Redirect("User/Login");
         }
 
 
