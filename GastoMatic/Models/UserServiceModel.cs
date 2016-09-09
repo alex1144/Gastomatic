@@ -9,6 +9,7 @@ namespace GastoMatic.Models
 {
     public class UserServiceModel : ActiveRecord
     {
+        public int userId { get; set; }
         public string Usuario { get; set; }
         public string Contrasena { get; set; }
         public string Correo { get; set; }
@@ -35,7 +36,7 @@ namespace GastoMatic.Models
                 else
                     throw new Exception("No existe el usuario ");
             } 
-            catch(Exception e)
+            catch
             {
                 return false;
             }
@@ -83,6 +84,50 @@ namespace GastoMatic.Models
                     }
                 }
                 
+        }
+
+        public List<UserServiceModel> getUsersList()
+        {
+            ActiveRecord record = new ActiveRecord();
+            using (SqlConnection con = new SqlConnection(this.cadenaConexion))
+            {
+                try
+                {
+                    List<UserServiceModel> usuarios = new List<UserServiceModel>();
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM CuentaGastosUsuarios order by UsuarioId asc", con);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        usuarios.Add(new UserServiceModel
+                        {
+                            userId = Int32.Parse(reader[0].ToString()),
+                            Usuario = reader[1].ToString(),
+                            Contrasena = reader[2].ToString(),
+                            Correo = reader[7].ToString(),
+                            Nombre = reader[3].ToString(),
+                            ApellidoPaterno = reader[4].ToString(),
+                            ApellidoMaterno = reader[5].ToString(),
+                            CodigoAcreditacion = reader[6].ToString(),
+                            Perfil = reader[8].ToString()
+                        });
+                    }
+                    if (usuarios.Count > 0)
+                        return usuarios;
+                    else
+                    {
+                        throw new ArgumentException("No se obtuvuieron registros para el listado de usuarios");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    con.Close();
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+
         }
 
         public bool updateDatabaseUser(string userId)
@@ -180,7 +225,7 @@ namespace GastoMatic.Models
             }
         }
 
-        public bool createUser(string userId)
+        public bool createUser()
         {
             bool validateUserExists = userExists(this.Usuario);
             if (validateUserExists==true)
@@ -198,19 +243,21 @@ namespace GastoMatic.Models
                         con.Open();
 
                         SqlCommand cmd = new SqlCommand("INSERT INTO CuentaGastosUsuarios (Usuario, Contrasena, Nombre,ApellidoPaterno,ApellidoMaterno,NumeroAcreedor,email,Perfil) VALUES (@User,@Contrasena,@Nombre,@ApellidoPaterno,@ApellidoMaterno,@NumeroAcreedor,@email,@Perfil)", con);
-                        //cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = userId;
-                        //cmd.Parameters.Add(new SqlParameter("@Contrasena", SqlDbType.VarChar)).Value = password;
-                        //cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.VarChar)).Value = nombre;
-                        //cmd.Parameters.Add(new SqlParameter("@ApellidoPaterno", SqlDbType.VarChar)).Value = aPaterno;
-                        //cmd.Parameters.Add(new SqlParameter("@ApellidoMaterno", SqlDbType.VarChar)).Value = aMaterno;
-                        //cmd.Parameters.Add(new SqlParameter("@NumeroAcreedor", SqlDbType.VarChar)).Value = numAcreedor;
-                        //cmd.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar)).Value = email;
-                        //cmd.Parameters.Add(new SqlParameter("@Perfil", SqlDbType.VarChar)).Value = perfil;
+
+                        cmd.Parameters.Add(new SqlParameter("@User", SqlDbType.VarChar)).Value = this.Usuario;
+                        cmd.Parameters.Add(new SqlParameter("@Contrasena", SqlDbType.VarChar)).Value = this.Contrasena;
+                        cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.VarChar)).Value = this.Nombre;
+                        cmd.Parameters.Add(new SqlParameter("@ApellidoPaterno", SqlDbType.VarChar)).Value = this.ApellidoPaterno;
+                        cmd.Parameters.Add(new SqlParameter("@ApellidoMaterno", SqlDbType.VarChar)).Value = this.ApellidoMaterno;
+                        cmd.Parameters.Add(new SqlParameter("@NumeroAcreedor", SqlDbType.VarChar)).Value = this.CodigoAcreditacion;
+                        cmd.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar)).Value = this.Correo;
+                        cmd.Parameters.Add(new SqlParameter("@Perfil", SqlDbType.VarChar)).Value = this.Perfil;
+
                         
 
                         SqlDataReader reader = cmd.ExecuteReader();
                         reader.Read();
-                        if (reader.HasRows)
+                        if (reader.RecordsAffected>0)
                         {
                             return true;
                         }

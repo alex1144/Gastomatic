@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Collections;
 using System.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace GastoMatic.Models
 {
@@ -12,9 +13,13 @@ namespace GastoMatic.Models
     {
         public int IdCuentaGastos { get; set; }
         public DateTime FechaCreacion { get; set; }
+        [Required(ErrorMessage = "La Fecha de Inicio es requerida")]
         public DateTime FechaInicial { get; set; }
+        [Required(ErrorMessage = "La Fecha de Fin es requerida")]
         public DateTime FechaFinal { get; set; }
+        [Required(ErrorMessage = "El Numero Acreedor es requerida")]
         public string NumeroAcreedor { get; set; }
+        [Required(ErrorMessage = "La Descripcion es requerida")]
         public string Descripcion { get; set; }
 
         public void crearCuentaGasto()
