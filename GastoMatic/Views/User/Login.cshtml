@@ -16,7 +16,7 @@
             @Html.LabelFor(model => model.Usuario)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Usuario)
+            @Html.TextBoxFor(model => model.Usuario, new { required = "required" })
             @Html.ValidationMessageFor(model => model.Usuario)
         </div>
 
@@ -24,7 +24,7 @@
             @Html.Label("Contraseña")
         </div>
         <div class="editor-field">
-            @Html.PasswordFor(model => model.Contrasena)
+            @Html.PasswordFor(model => model.Contrasena, new { required = "required" })
             @Html.ValidationMessageFor(model => model.Contrasena)
         </div>
         <input type="submit" value="Login" />
