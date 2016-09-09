@@ -1,7 +1,7 @@
 ﻿@model GastoMatic.Models.UserServiceModel
 
 @{
-    ViewBag.Title = "CreateUser";
+    ViewBag.Title = "Nuevo Registro";
 }
 
 
@@ -11,29 +11,36 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <div class="classname">
-        <legend>UserServiceModel</legend>
+        <legend>Nuevo Registro</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Usuario)
+            @Html.Label("Nombre de Usuario")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Usuario)
+            @Html.TextBoxFor(model => model.Usuario, new { required = "required" })
             @Html.ValidationMessageFor(model => model.Usuario)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Contrasena)
+            @Html.Label("Contraseña")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Contrasena)
+            @Html.PasswordFor(model => model.Contrasena, new { required = "required" })
             @Html.ValidationMessageFor(model => model.Contrasena)
+        </div>
+
+            <div class="editor-label">
+            @Html.Label("Confirmar Contraseña")
+        </div>
+        <div class="editor-field">
+            @Html.Password("confirm_password", null, new { required = "required" })
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Correo)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Correo)
+            @Html.TextBoxFor(model => model.Correo, new { type="email", required="required"})
             @Html.ValidationMessageFor(model => model.Correo)
         </div>
 
@@ -41,31 +48,31 @@
             @Html.LabelFor(model => model.Nombre)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Nombre)
+            @Html.TextBoxFor(model => model.Nombre, new { required = "required" })
             @Html.ValidationMessageFor(model => model.Nombre)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ApellidoPaterno)
+            @Html.Label("Apellido Paterno")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ApellidoPaterno)
+            @Html.TextBoxFor(model => model.ApellidoPaterno, new { required = "required" })
             @Html.ValidationMessageFor(model => model.ApellidoPaterno)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ApellidoMaterno)
+            @Html.Label("Apellido Materno")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ApellidoMaterno)
+            @Html.TextBoxFor(model => model.ApellidoMaterno, new { required = "required" })
             @Html.ValidationMessageFor(model => model.ApellidoMaterno)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.CodigoAcreditacion)
+            @Html.Label("Codigo de Acreditación")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.CodigoAcreditacion)
+            @Html.TextBoxFor(model => model.CodigoAcreditacion, new { required = "required" })
             @Html.ValidationMessageFor(model => model.CodigoAcreditacion)
         </div>
 
@@ -73,12 +80,12 @@
             @Html.LabelFor(model => model.Perfil)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Perfil)
+            @Html.TextBoxFor(model => model.Perfil, new { required = "required" })
             @Html.ValidationMessageFor(model => model.Perfil)
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Registrar" />
         </p>
 </div>
 }
@@ -87,3 +94,18 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+<script>
+    var password = document.getElementById("Contrasena")
+  , confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword() {
+        if (password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
