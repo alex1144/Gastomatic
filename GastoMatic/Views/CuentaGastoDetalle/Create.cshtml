@@ -11,7 +11,7 @@
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
-    <fieldset>
+    <div class="Detalle">
         <legend>CuentaGastosDetalle</legend>
 
         <div class="editor-label">
@@ -71,11 +71,11 @@
         <p>
             <input type="submit" value="Create" />
         </p>
-    </fieldset>
-    
-}
-
-<div>
+        <div>
     @Html.ActionLink("Back to List", "Index", new { id = ViewBag.Model.IdCuentaGastos })
 </div>
+    </div>
+}
+
+
 

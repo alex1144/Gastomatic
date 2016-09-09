@@ -4,6 +4,8 @@ body
     font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
     color: #232323;
     background-color: #fff;
+    padding: 0;
+    margin: 0;
 }
 
 /* Styles for basic forms
@@ -65,4 +67,84 @@ textarea
 .validation-summary-valid
 {
     display: none;
+}
+
+
+header {
+    min-width: 1000px;
+    height: 50px;
+    background: #00a0db;
+    margin-bottom: 50px;
+}
+
+.login {
+    width: 500px;
+    height: 330px;
+    border: 1px solid #c9c9c9;
+    padding: 10px;
+    margin: auto;
+}
+
+input {
+    width: 100%;
+    height: 35px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    background: red;
+    border: 0px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.logo {
+    color: #fff;
+    font-size: 25px;
+    line-height: 40px;
+    margin-left: 10px;
+}
+
+.registro {
+    margin-top: 20px;
+}
+
+.registro a {
+    color: #000;
+    font-size: 15px;
+}
+
+.classname {
+    width: 600px;
+    margin: auto;
+    border: 1px solid #c9c9c9;
+    padding: 10px;
+}
+
+.Detalle {
+    width: 600px;
+    margin: auto;
+    border: 1px solid #c9c9c9;
+    padding: 10px;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+
+.classname{
+    width: 100%;
+}
+.login {
+    width: 100%;
+}
+header {
+    width: 100% !important;
+}   
+
+.Detalle {
+    width: 100%;
+} 
 }

@@ -1,0 +1,163 @@
+@media only screen and (max-width: 768px) {
+        
+
+h2{font-size: 20px !important;}
+
+
+#nav-mobile{display: block;}
+
+#menu{
+width: 100%;
+float: none;
+padding-top: 60px;
+}
+
+#menu ul{-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.5);-moz-box-shadow: 0 1px 2px rgba(0,0,0,.5);box-shadow: 0 1px 2px rgba(0,0,0,.5);max-height: 0;overflow: hidden;}
+
+#menu li{
+background: #33363b;
+border-bottom: 1px solid #282b30;
+float: none;
+}
+
+#menu li:last-child{ border-bottom: 0;}
+#menu li a{
+padding: 15px 0;
+height: auto;
+line-height: normal;
+}
+#menu li a:hover{background:#2a2d33}
+
+#menu ul.open-menu{max-height: 400px;-webkit-transition: max-height .4s;-moz-transition: max-height .4s;-ms-transition: max-height .4s;-o-transition: max-height .4s;transition: max-height .4s;z-index: 1;position: relative;}
+
+.ar, .ir, .er {
+    width: 100% !important;
+    height: 60% !important;
+    /* border: 1px solid; */
+    float: left;
+    margin-left: 2px;
+    margin-bottom: 10px;
+}
+
+.video {
+   width: 90% !important;
+   height: 50% !important;
+}
+
+iframe {
+    width: 100% !important;
+}
+
+.photo {
+    border-radius: 50%;
+    width: 174px;
+    height: 174px;
+    margin: auto;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+img {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.equipo {
+    /* border: 1px solid; */
+    width: 100% !important;
+    height: 100% !important;
+    float: left;
+    margin-left: 2px;
+}
+
+div#buscar form {
+    width: 98% !important;
+    margin-right: 5px;
+}
+
+div#livesearch {
+    background: rgba(92, 184, 92, 0.29);
+    overflow: auto;
+    position: fixed;
+    width: 73% !important;
+}
+
+i.fa.fa-search {
+    font-size: 20px;
+    color: #ffffff;
+}
+
+div#search {
+    width: 100% !important;
+    margin: auto !important;
+    text-align: center;
+    /* border: 1px solid; */
+    height: 48px !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+div#buscar {
+    width: 86% !important;
+    text-align: center;
+    /* border: 1px solid; */
+    height: 28px !important;
+    float: right !important;
+}
+
+
+div#buscar form input[type="text"] {
+    width: 100% !important;
+}
+
+#content {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    /* border: 1px solid; */
+    margin-bottom: 10px;
+}
+div#footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.89);
+    height: 50px;
+    position: inherit;
+}
+
+
+body {background-image: url('../images/arVerbs.png');background-repeat: no-repeat;background-attachment: fixed;background-position: right 0px bottom 123px;background-size: contain;}
+
+.hist {
+    /* border: 1px solid; */
+    width: 100% !important;
+    height: 100% !important;
+    float: left;
+    margin-left: 2px;
+}
+
+div#equ {
+     width: 90%;
+     margin: auto;
+     /* border: 1px solid; */
+     height: 40px;
+     margin-bottom: 50px;
+     margin-top: 50px;
+}
+div#cve h2 {
+    margin: 0;
+    background: rgba(250, 250, 250, 0.97);
+    width: initial;
+    padding: 5px;
+}
+
+div#equ h2   {
+    margin: 0;
+    background: rgba(250, 250, 250, 0.97);
+    width: initial;
+    padding: 5px;
+}
+
+
+}
+
