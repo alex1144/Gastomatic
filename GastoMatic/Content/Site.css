@@ -105,6 +105,7 @@ input[type="submit"] {
     font-size: 25px;
     line-height: 40px;
     margin-left: 10px;
+    float: left;
 }
 
 .registro {
@@ -136,23 +137,87 @@ table, th, td {
 }
 
 
+div#tabla {
+    width: 1000px;
+    height: 100%;
+    margin: auto;
+}
+
+
+div#tabla th {
+    padding: 5px;
+    text-align: center;
+}
+
+
+div#tabla td {
+    padding: 5px;
+    text-align: CENTER;
+}
 
 
 
+.Createn {
+    width: 1000px;
+    height: 30px;
+
+    margin: auto;
+}
+
+div#contactFormArea {
+    width: 500px;
+    height: 100%;
+    border: 1px solid;
+    margin: auto;
+    padding: 5px;
+}
+
+button.btn.btn-default {
+    width: 100%;
+    background: #007fff;
+    border: 0px;
+    color: #fff;
+}
+
+.tablanew {
+    width: 1000px;
+    height: 100px;
+    /* border: 1px solid; */
+    margin: auto;
+}
+
+.udp {
+        width: 600px;
+    margin: auto;
 
 
+}
 
 
+.cuenta {
+    width: 600px;
+    MARGIN: AUTO;
+}
 
 
+.delete {
+    width: 600px;
+    margin: auto;
+    border: 1px solid #c9c9c9;
+    padding: 10px;
+}
 
-
-
-
-
-
-
-
+.details {
+        width: 600px;
+    margin: auto;
+    border: 1px solid #c9c9c9;
+    padding: 10px;
+}
+.tabl {
+    width: 1000px;
+    /* border: 1px solid; */
+    margin: auto;
+}
 
 
 
@@ -171,4 +236,23 @@ header {
 .Detalle {
     width: 100%;
 } 
+}
+
+nav#menu {
+    width: 531px;
+    HEIGHT: 30PX;
+    /* BORDER: 1px solid; */
+    float: left;
+    margin-top: 10px;
+}
+
+nav#menu ul li {
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+nav#menu a {
+    color: #fff;
+    font-size: 20px;
 }

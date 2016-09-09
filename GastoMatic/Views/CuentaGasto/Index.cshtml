@@ -4,11 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
+
+<div class="Createn "
+
     @Html.ActionLink("Create New", "Create")
-</p>
+    </div>
 <div id="tabla"></div>
 
 @* ReactJS javascript (JSX) code *@
@@ -46,7 +47,9 @@
             var fechaCreacion = {};
             var fechaFinal = {};
             return (
-            <table>
+            <div class="create">
+
+            <table className="createnew">
                 <tbody>
                 <tr>
                     <th></th>
@@ -103,9 +106,9 @@
             }
             </tbody>
             </table>
+            </div>
         );
         }
-    
     });
  
     ReactDOM.render(<TablaCuentaGastos/>,document.getElementById("tabla"));
