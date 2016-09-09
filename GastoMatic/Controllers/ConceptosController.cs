@@ -22,6 +22,12 @@ namespace GastoMatic.Controllers
             ViewBag.Models = cs.GetListCuentaGastos(); ;
             return View();
         }
+
+        public JsonResult IndexRest()
+        {
+            ConceptosServiceModel cs = new ConceptosServiceModel();
+            return Json(cs.GetListCuentaGastos(), JsonRequestBehavior.AllowGet);
+        }
         //
         // GET: /CuentaGasto/Create
 

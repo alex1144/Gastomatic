@@ -9,38 +9,78 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
-    <tr>
-        <th style="width:150px; text-align:left"></th>
-        <th style="width:100px; text-align:left">
-            IdConcepto
-        </th>
-        <th style="width:250px; text-align:left">
-            Nombre
-        </th>
-        <th style="width:550px; text-align:left"">
-            Descripcion
-        </th>
-    </tr>
 
-@foreach (var item in ViewBag.Models) {
-    <tr>
-        <td style="width:150px; text-align:left">
-            @Html.ActionLink("Update", "Update", new { id = item.IdConcepto }) |
-            @*@Html.ActionLink("Details", "Details", new { id = item.IdConcepto }) |*@
-            @Html.ActionLink("Delete", "Delete", new { id = item.IdConcepto })
-        </td>
-        <td style="width:100px; text-align:left">
-            @item.IdConcepto
-        </td>
-        <td style="width:250px; text-align:left">
-            @item.Nombre
-        </td>
-        <td style="width:550px; text-align:left">
-            @item.Descripcion
-        </td>
-    </tr>
-}
+<div id="tabla"></div>
 
-</table>
-
+@* ReactJS javascript (JSX) code *@
+    @* Jquery library *@
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+        @* ReactJS library *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react-dom.js"></script>
+        @* JSX converter (JSX to native javascript) *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+ 
+<script type="text/babel">
+ var Tabla = React.createClass({
+        getInitialState : function(){
+            return {
+                data : []
+            };
+        },
+        componentDidMount : function(){
+            //Fetch data from server
+            $.get('/Conceptos/IndexRest', function(result){
+                if(this.isMounted){
+                    this.setState({
+                        data : result
+                    });
+                }
+            }.bind(this));
+        },
+        render : function(){
+            var edit = {};
+            var detalle = {};
+            var eliminar = {};
+            return (
+            <table>
+                <tbody>
+                <tr>
+                    <th></th>
+                    <th>
+                        Concepto
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Descripcion
+                    </th>
+                </tr>
+            {
+                this.state.data.map(function(d) {
+                    
+                    edit = { 
+                        href:'/Conceptos/Update/'+d.IdConcepto
+                    };
+                    eliminar = { 
+                        href:'/Conceptos/Delete/'+d.IdConcepto
+                    };
+                    
+                    return <tr key={d.IdConcepto}>
+                            <td><a href={edit.href}>Update</a>|<a href={eliminar.href}>Delete</a></td>
+                            <td>{d.IdConcepto}</td>
+                            <td>{d.Nombre}</td>
+                            <td>{d.Descripcion}</td>
+                           </tr>
+                })
+            }
+            </tbody>
+            </table>
+        );
+        }
+    
+    });
+ 
+    ReactDOM.render(<Tabla/>,document.getElementById("tabla"));
+</script>

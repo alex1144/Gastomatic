@@ -11,69 +11,106 @@
 
     @Html.ActionLink("Regresar Cuenta Gastos", "Index", new { controller = "CuentaGasto"})
 </p>
-<table>
-    <tr>
-        <th></th>
-        <th>
-            IdCuentaGastosDetalle
-        </th>
-        <th>
-            Fecha
-        </th>
-        <th>
-            Monto
-        </th>
-        <th>
-            FolioFactura
-        </th>
-        <th>
-            Descripcion
-        </th>
-        <th>
-            IdConcepto
-        </th>
-        <th>
-            MetodoPago
-        </th>
-        <th>
-            CuentaGastoId
-        </th>
-    </tr>
 
-@foreach (var item in ViewBag.Model)
-{
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.IdCuentaGastosDetalle }) |
-            @Html.ActionLink("Details", "Details", new { id = item.IdCuentaGastosDetalle }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.IdCuentaGastosDetalle })
-        </td>
-        <td>
-            @item.IdCuentaGastosDetalle
-        </td>
-        <td>
-            @String.Format("{0:g}", item.Fecha)
-        </td>
-        <td>
-            @String.Format("{0:F}", item.Monto)
-        </td>
-        <td>
-            @item.FolioFactura
-        </td>
-        <td>
-            @item.Descripcion
-        </td>
-        <td>
-            @item.IdConcepto
-        </td>
-        <td>
-            @item.MetodoPago
-        </td>
-        <td>
-            @item.CuentaGastoId
-        </td>
-    </tr>
-}
+<div id="tabla"></div>
 
-</table>
-
+@* ReactJS javascript (JSX) code *@
+    @* Jquery library *@
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+        @* ReactJS library *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react-dom.js"></script>
+        @* JSX converter (JSX to native javascript) *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+ 
+<script type="text/babel">
+var id = @ViewBag.id;
+var TablaCuentaGastos = React.createClass({
+        getInitialState : function(){
+            return {
+                data : []
+            };
+        },
+        componentDidMount : function(){
+            //Fetch data from server
+            $.get('/CuentaGastoDetalle/IndexRest/'+this.props.id, function(result){
+                if(this.isMounted){
+                    this.setState({
+                        data : result
+                    });
+                }
+            }.bind(this));
+        },
+        render : function(){
+            var edit = {};
+            var detalle  = {};
+            var eliminar = {};
+            var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
+            var fecha = {};
+            return (
+            <table>
+                <tbody>
+                <tr>
+                    <th></th>
+                    <th>
+                        Cuenta Gastos Detalle
+                    </th>
+                    <th>
+                        Fecha
+                    </th>
+                    <th>
+                        Monto
+                    </th>
+                    <th>
+                        Folio Factura
+                    </th>
+                    <th>
+                        Descripcion
+                    </th>
+                    <th>
+                        IdConcepto
+                    </th>
+                    <th>
+                        MetodoPago
+                    </th>
+                    <th>
+                        CuentaGastoId
+                    </th>
+                </tr>
+            {
+                this.state.data.map(function(d) {
+                    
+                    edit = { 
+                        href:'/CuentaGastoDetalle/Edit/'+d.IdCuentaGastosDetalle
+                    };
+                    detalle = { 
+                        href:'/CuentaGastoDetalle/Details/'+d.IdCuentaGastosDetalle
+                    };
+                    eliminar = { 
+                        href:'/CuentaGastoDetalle/Delete/'+d.IdCuentaGastosDetalle
+                    };
+                    fecha = {
+                        valor:new Date(parseInt(d.Fecha.replace("/Date(", "").replace(")/",""), 10)).toLocaleDateString ("es-MX" , options)
+                    };
+                    return <tr key={d.IdCuentaGastosDetalle}>
+                            <td><a href={edit.href}>Edit</a>|<a href={detalle.href}>Detalle</a>|<a href={eliminar.href}>Delete</a></td>
+                            <td>{d.IdCuentaGastosDetalle}</td>
+                            <td>{fecha.valor}</td>
+                            <td>{d.Monto}</td>
+                            <td>{d.FolioFactura}</td>
+                            <td>{d.Descripcion}</td>
+                            <td>{d.IdConcepto}</td>
+                            <td>{d.MetodoPago}</td>
+                            <td>{d.CuentaGastoId}</td>
+                           </tr>
+                })
+            }
+            </tbody>
+            </table>
+        );
+        }
+    
+    });
+ 
+    ReactDOM.render(<TablaCuentaGastos id={id} />,document.getElementById("tabla"));
+</script>
