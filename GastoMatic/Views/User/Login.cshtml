@@ -10,7 +10,7 @@
     @Html.ValidationSummary(true)
 
     <div class="login">
-          <legend>Login</legend>
+          <legend>Ingresar</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Usuario)
@@ -21,18 +21,21 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Contrasena)
+            @Html.Label("Contraseña")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Contrasena)
+            @Html.PasswordFor(model => model.Contrasena)
             @Html.ValidationMessageFor(model => model.Contrasena)
         </div>
         <input type="submit" value="Login" />
         
         <div>
-   <div class="registro"> @Html.ActionLink("Registrate aqui", "CreateUser")</div>
-        </div>
-      </div>
+
+   <div class="registro">
+   		@Html.ActionLink("Registrate aquí", "CreateUser")</div>
+
+   </div>
+  </div>
 }
 
 
