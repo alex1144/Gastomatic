@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Collections;
 using System.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace GastoMatic.Models
 {
@@ -12,6 +13,7 @@ namespace GastoMatic.Models
     {
         public int IdCuentaGastosDetalle { get; set; }
         public DateTime Fecha { get; set; }
+        [RegularExpression(@"^\d+\.\d{0,2}$",ErrorMessage = "Debe tener el formato 0000.00")]
         public double Monto { get; set; }
         public string FolioFactura { get; set; }
         public string Descripcion { get; set; }
