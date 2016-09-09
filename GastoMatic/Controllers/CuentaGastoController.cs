@@ -47,6 +47,10 @@ namespace GastoMatic.Controllers
 
         public ActionResult Create()
         {
+            UserServiceModel us = new UserServiceModel();
+            var lis = us.getUsersList();
+            SelectList lista = new SelectList(lis, "CodigoAcreditacion", "Nombre", 0);
+            ViewBag.Lista = lista;
             return View();
         }
 
@@ -87,6 +91,10 @@ namespace GastoMatic.Controllers
             {
                 IdCuentaGastos = id
             };
+            UserServiceModel us = new UserServiceModel();
+            var lis = us.getUsersList();
+            SelectList lista = new SelectList(lis, "CodigoAcreditacion", "Nombre", 0);
+            ViewBag.Lista = lista;
             return View(cg.verCuentaGastos());
         }
 

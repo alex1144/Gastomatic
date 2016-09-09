@@ -33,7 +33,7 @@ namespace GastoMatic.Controllers
         }
 
         //
-        // GET: /CuentaGastosDetalle/Create
+        // GET: /CuentaGastosDetalle/Create/1
 
         public ActionResult Create(int id)
         {

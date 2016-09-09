@@ -9,6 +9,7 @@ namespace GastoMatic.Models
 {
     public class UserServiceModel : ActiveRecord
     {
+        public int userId { get; set; }
         public string Usuario { get; set; }
         public string Contrasena { get; set; }
         public string Correo { get; set; }
@@ -101,14 +102,15 @@ namespace GastoMatic.Models
                     {
                         usuarios.Add(new UserServiceModel
                         {
-                            Usuario = reader.GetString(1).ToString(),
-                            Contrasena = reader.GetString(2).ToString(),
-                            Correo = reader.GetString(3).ToString(),
-                            Nombre = reader.GetString(4).ToString(),
-                            ApellidoPaterno = reader.GetString(5).ToString(),
-                            ApellidoMaterno = reader.GetString(6).ToString(),
-                            CodigoAcreditacion = reader.GetString(7).ToString(),
-                            Perfil = reader.GetString(8).ToString()
+                            userId = Int32.Parse(reader[0].ToString()),
+                            Usuario = reader[1].ToString(),
+                            Contrasena = reader[2].ToString(),
+                            Correo = reader[7].ToString(),
+                            Nombre = reader[3].ToString(),
+                            ApellidoPaterno = reader[4].ToString(),
+                            ApellidoMaterno = reader[5].ToString(),
+                            CodigoAcreditacion = reader[6].ToString(),
+                            Perfil = reader[8].ToString()
                         });
                     }
                     if (usuarios.Count > 0)

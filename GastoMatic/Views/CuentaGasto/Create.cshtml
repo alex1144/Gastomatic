@@ -34,7 +34,7 @@
             @Html.LabelFor(model => model.NumeroAcreedor)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.NumeroAcreedor)
+            @Html.DropDownListFor(model => model.NumeroAcreedor, (SelectList)ViewBag.Lista)
             @Html.ValidationMessageFor(model => model.NumeroAcreedor)
         </div>
 
