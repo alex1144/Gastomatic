@@ -88,6 +88,7 @@
     <Content Include="Content\jQuery-webcam-master\jscam.swf" />
     <Content Include="Content\jQuery-webcam-master\jscam_canvas_only.swf" />
     <Content Include="Content\jQuery-webcam-master\src\jscam.xml" />
+    <Content Include="Content\logo.png" />
     <Content Include="Content\responsive.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
